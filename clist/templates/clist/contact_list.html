@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Contacts{% endblock title %}
+
+{% block content %}
+<div class="contacts-header">
+    <h1>Contacts</h1>
+    <span class="contact-count">{{ contacts|length }} total</span>
+</div>
+
+<ul class="contact-list">
+    {% for contact in contacts %}
+    <li class="contact-card">
+        <a href="{{ contact.get_absolute_url }}" class="contact-link">
+            <span class="contact-name">{{ contact.first_name }} {{ contact.last_name }}</span>
+            <span class="contact-phone">{{ contact.phone }}</span>
+        </a>
+    </li>
+    {% empty %}
+    <li class="contact-empty">No contacts yet.</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

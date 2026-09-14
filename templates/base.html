@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Weblog{% endblock title %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background: #fafafa;
+            color: #222;
+        }
+        main {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Contact list */
+        .contacts-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1rem; }
+        .contact-count { color: #666; font-size: 0.9rem; }
+        .contact-list { list-style: none; padding: 0; margin: 0; border: 1px solid #e2e2e2; border-radius: 8px; overflow: hidden; background: #fff; }
+        .contact-card { border-bottom: 1px solid #eee; }
+        .contact-card:last-child { border-bottom: none; }
+        .contact-link { display: flex; justify-content: space-between; padding: 0.9rem 1.2rem; text-decoration: none; color: #222; transition: background 0.15s; }
+        .contact-link:hover { background: #f7f7f7; }
+        .contact-name { font-weight: 600; }
+        .contact-phone { color: #777; }
+        .contact-empty { padding: 1.2rem; color: #999; text-align: center; }
+
+        /* Contact detail */
+        .back-link { display: inline-block; margin-bottom: 1rem; color: #555; text-decoration: none; font-size: 0.9rem; }
+        .back-link:hover { text-decoration: underline; }
+        .detail-fields dt { font-size: 0.8rem; text-transform: uppercase; color: #888; margin-top: 0.9rem; }
+        .detail-fields dd { margin: 0.2rem 0 0; font-size: 1.05rem; }
+    </style>
+</head>
+<body>
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+</body>
+</html>

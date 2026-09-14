@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ contact.first_name }} {{ contact.last_name }}{% endblock title %}
+
+{% block content %}
+<a href="{% url 'clist:contact_list' %}" class="back-link">&larr; Back to contacts</a>
+
+<h1>{{ contact.first_name }} {{ contact.last_name }}</h1>
+
+<dl class="detail-fields">
+    <dt>Phone</dt>
+    <dd>{{ contact.phone }}</dd>
+
+    <dt>Address</dt>
+    <dd>{{ contact.address }}</dd>
+</dl>
+{% endblock content %}
