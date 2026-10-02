@@ -4,13 +4,32 @@
 {% block content %}
 <a href="{% url 'clist:contact_list' %}" class="back-link">&larr; Back to contacts</a>
 
-<h1>{{ contact.first_name }} {{ contact.last_name }}</h1>
+<div class="detail-header">
+    <span class="avatar-lg">{{ contact.first_name|first|upper }}{{ contact.last_name|first|upper }}</span>
+    <div>
+        <h1>{{ contact.first_name }} {{ contact.last_name }}</h1>
+        <div class="subtitle">Contact details</div>
+    </div>
+</div>
 
-<dl class="detail-fields">
-    <dt>Phone</dt>
-    <dd>{{ contact.phone }}</dd>
+<div class="detail-card">
+    <div class="detail-row">
+        <span class="detail-icon">📞</span>
+        <div>
+            <div class="detail-label">Phone</div>
+            <div class="detail-value">{{ contact.phone|default:"—" }}</div>
+        </div>
+    </div>
+    <div class="detail-row">
+        <span class="detail-icon">📍</span>
+        <div>
+            <div class="detail-label">Address</div>
+            <div class="detail-value">{{ contact.address|default:"—" }}</div>
+        </div>
+    </div>
+</div>
 
-    <dt>Address</dt>
-    <dd>{{ contact.address }}</dd>
-</dl>
+<div class="detail-actions">
+    <a href="{% url 'clist:contact_list' %}" class="btn btn-secondary">Back to list</a>
+</div>
 {% endblock content %}
