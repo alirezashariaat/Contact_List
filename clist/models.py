@@ -21,9 +21,11 @@ class Contact(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.phone, allow_unicode=True)
+        self.first_name = self.first_name.title()
+        self.last_name = self.last_name.title()
         super().save(*args, **kwargs)
 
     class Meta:
-        ordering = ['-first_name']
+        ordering = ['last_name']
         indexes = [models.Index(fields=['first_name', 'last_name'])]
         verbose_name = 'Contact'
