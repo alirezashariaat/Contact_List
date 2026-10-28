@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+
+{% block title %}Search Contacts{% endblock title %}
+
+{% block content %}
+    <div class="contacts-header">
+        <h1>Search results</h1>
+
+        {% if query %}
+            <span class="contact-count">
+                {{ contacts|length }} result{{ contacts|length|pluralize }}
+            </span>
+        {% endif %}
+    </div>
+
+    {% if query %}
+        <p class="search-description">
+            Showing results for
+            <strong>"{{ query }}"</strong>
+        </p>
+    {% endif %}
+
+    {% if contacts %}
+        <ul class="contact-list">
+            {% for contact in contacts %}
+                <li class="contact-card">
+                    <a href="{{ contact.get_absolute_url }}" class="contact-link">
+                        <div class="avatar">
+                            {{ contact.first_name|first|upper }}
+                        </div>
+
+                        <div class="contact-info">
+                            <span class="contact-name">
+                                {{ contact.first_name }} {{ contact.last_name }}
+                            </span>
+
+                            <span class="contact-phone">
+                                ☎ {{ contact.phone }}
+                            </span>
+
+                            {% if contact.address %}
+                                <span class="contact-phone">
+                                    📍 {{ contact.address }}
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        <span class="chevron">›</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% elif query %}
+        <div class="contact-empty">
+            <span class="emoji">🔍</span>
+            <h2>No contacts found</h2>
+            <p>
+                No contacts matched
+                <strong>"{{ query }}"</strong>.
+            </p>
+            <a href="{% url 'clist:contact_list' %}" class="btn btn-secondary">
+                Back to contacts
+            </a>
+        </div>
+
+    {% else %}
+        <div class="contact-empty">
+            <span class="emoji">🔎</span>
+            <h2>Search your contacts</h2>
+            <p>Enter a name, phone number, or address in the search box above.</p>
+        </div>
+    {% endif %}
+{% endblock content %}

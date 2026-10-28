@@ -312,6 +312,59 @@
             .brand span:not(.brand-icon) { display: none; }
             .contacts-header .btn span.label { display: none; }
         }
+        
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    max-width: 320px;
+}
+
+.search-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--input-bg);
+    color: var(--text);
+    font: inherit;
+    outline: none;
+}
+
+.search-form input:focus {
+    border-color: var(--primary);
+    background: var(--input-bg-focus);
+}
+
+.search-form button {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 7px;
+    padding: 0.55rem 0.75rem;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-form button:hover {
+    background: var(--primary-dark);
+}
+
+@media (max-width: 480px) {
+    .search-form {
+        max-width: none;
+        width: 100%;
+        order: 3;
+    }
+
+    .topbar-inner {
+        flex-wrap: wrap;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -322,6 +375,20 @@
                 ContactBook
             </a>
             <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+            
+<form action="{% url 'clist:contact_search' %}" method="get" class="search-form">
+    <input
+        type="search"
+        name="query"
+        placeholder="Search contacts..."
+        value="{{ request.GET.query|default:'' }}"
+        aria-label="Search contacts"
+    >
+    <button type="submit" aria-label="Search">
+        🔍
+    </button>
+</form>
+
         </div>
     </div>
     <main>
