@@ -5,4 +5,5 @@ urlpatterns = [path("", views.contact_list, name='contact_list'),
                path("add_contact/", views.add_contact, name="add_contact"),
                path("search/", views.contact_search, name='contact_search'),
                path("<slug:slug>/", views.contact_detail, name='contact_detail'),
+               path("register/", views.register, name='register')
                ]

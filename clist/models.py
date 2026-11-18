@@ -2,7 +2,9 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django.core.validators import RegexValidator
-
+from django.contrib.auth.models import User
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
 phone_validator = RegexValidator(
     regex=r'^09\d{9}$',
     message='The phone number must be 11 digits and starts with "09"'
@@ -17,6 +19,11 @@ class Contact(models.Model):
     address = models.CharField(max_length=250, verbose_name="Address")
     slug = models.SlugField(max_length=50, verbose_name="Slug", unique=True,)
     objects = models.Manager()
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='contacts',
+    )
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"

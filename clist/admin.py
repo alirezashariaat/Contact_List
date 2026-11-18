@@ -4,7 +4,7 @@ from .models import Contact
 
 
 @admin.register(Contact)
-class ConatactAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'phone']
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['last_name', 'first_name', 'phone', 'owner']
     list_filter = ['last_name']
     list_display_links = ['last_name', 'first_name']
